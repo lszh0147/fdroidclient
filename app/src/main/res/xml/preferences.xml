@@ -131,7 +131,7 @@
                 android:key="promptToSendCrashReports"
                 android:title="@string/prompt_to_send_crash_reports"
                 android:summary="@string/prompt_to_send_crash_reports_summary"
-                android:defaultValue="true"/>
+                android:defaultValue="false"/>
         <SwitchPreference
                 android:defaultValue="false"
                 android:key="preventScreenshots"
@@ -160,7 +160,7 @@
         <ListPreference
                 android:title="@string/cache_downloaded"
                 android:key="keepCacheFor"
-                android:defaultValue="86400000"
+                android:defaultValue="9223372036854775807"
                 android:entries="@array/keepCacheNames"
                 android:entryValues="@array/keepCacheValues"/>
         <SwitchPreference

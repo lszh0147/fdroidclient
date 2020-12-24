@@ -76,8 +76,7 @@ public final class Preferences implements SharedPreferences.OnSharedPreferenceCh
         }
         if (!preferences.contains(PREF_AUTO_DOWNLOAD_INSTALL_UPDATES)) {
             editor.putBoolean(PREF_AUTO_DOWNLOAD_INSTALL_UPDATES,
-                    PrivilegedInstaller.isExtensionInstalledCorrectly(context)
-                            != PrivilegedInstaller.IS_EXTENSION_INSTALLED_YES);
+                    false);
         }
         editor.apply();
     }
@@ -223,7 +222,7 @@ public final class Preferences implements SharedPreferences.OnSharedPreferenceCh
      * Get the update interval in milliseconds.
      */
     public long getUpdateInterval() {
-        int position = preferences.getInt(PREF_UPDATE_INTERVAL, IGNORED_I);
+        int position = preferences.getInt(PREF_UPDATE_INTERVAL, 0);
         return UPDATE_INTERVAL_VALUES[position];
     }
 
@@ -298,7 +297,7 @@ public final class Preferences implements SharedPreferences.OnSharedPreferenceCh
      * Time in millis to keep cached files.  Anything that has been around longer will be deleted
      */
     public long getKeepCacheTime() {
-        String value = preferences.getString(PREF_KEEP_CACHE_TIME, null);
+        String value = preferences.getString(PREF_KEEP_CACHE_TIME, "9223372036854775807");
         long fallbackValue = TimeUnit.DAYS.toMillis(1);
 
         // the first time this was migrated, it was botched, so reset to default
