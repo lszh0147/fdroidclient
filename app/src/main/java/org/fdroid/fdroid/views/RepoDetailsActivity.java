@@ -37,7 +37,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.fdroid.fdroid.FDroidApp;
-import org.fdroid.fdroid.NfcHelper;
+//import org.fdroid.fdroid.NfcHelper;
 import org.fdroid.fdroid.NfcNotEnabledActivity;
 import org.fdroid.fdroid.R;
 import org.fdroid.fdroid.UpdateService;
@@ -143,14 +143,14 @@ public class RepoDetailsActivity extends AppCompatActivity {
 
     @TargetApi(14)
     private void setNfc() {
-        if (NfcHelper.setPushMessage(this, Utils.getSharingUri(repo))) {
-            findViewById(android.R.id.content).post(new Runnable() {
-                @Override
-                public void run() {
-                    onNewIntent(getIntent());
-                }
-            });
-        }
+//        if (NfcHelper.setPushMessage(this, Utils.getSharingUri(repo))) {
+//            findViewById(android.R.id.content).post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    onNewIntent(getIntent());
+//                }
+//            });
+//        }
     }
 
     @Override

@@ -22,11 +22,13 @@
 
 package org.fdroid.fdroid.views.main;
 
+import android.Manifest;
 import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -41,6 +43,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -54,7 +57,7 @@ import org.fdroid.fdroid.AppUpdateStatusManager;
 import org.fdroid.fdroid.AppUpdateStatusManager.AppUpdateStatus;
 import org.fdroid.fdroid.BuildConfig;
 import org.fdroid.fdroid.FDroidApp;
-import org.fdroid.fdroid.NfcHelper;
+//import org.fdroid.fdroid.NfcHelper;
 import org.fdroid.fdroid.Preferences;
 import org.fdroid.fdroid.R;
 import org.fdroid.fdroid.UpdateService;
@@ -70,6 +73,8 @@ import org.fdroid.fdroid.views.ManageReposActivity;
 import org.fdroid.fdroid.views.apps.AppListActivity;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Main view shown to users upon starting F-Droid.
@@ -109,6 +114,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private BottomNavigationBar bottomNavigation;
     private int selectedMenuId;
     private TextBadgeItem updatesBadge;
+    String[] permission = {Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE};
+    List<String> mPermissionList = new ArrayList<>();
+    Boolean hasPermission = true;
+    private void checkPermission() {
+        for (int i = 0; i < permission.length; i++) {
+            if (ContextCompat.checkSelfPermission(this, permission[i]) != PackageManager.PERMISSION_GRANTED) {
+                mPermissionList.add(permission[i]);
+            }
+        }
+        if (!mPermissionList.isEmpty()) {
+            //代表有权限未授予，申请权限
+            String[] permissions = mPermissionList.toArray(new String[mPermissionList.size()]);
+            ActivityCompat.requestPermissions(this, permissions, 1);
+        } else {
+            //这里表示所有权限都授予了
+            //do someing
+        }
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -203,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
         Intent intent = getIntent();
         handleSearchOrAppViewIntent(intent);
+        checkPermission();
     }
 
     @Override
@@ -246,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         }
 
         // AppDetailsActivity and RepoDetailsActivity set different NFC actions, so reset here
-        NfcHelper.setAndroidBeam(this, getApplication().getPackageName());
+//        NfcHelper.setAndroidBeam(this, getApplication().getPackageName());
         checkForAddRepoIntent(getIntent());
     }
 
@@ -286,6 +311,24 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                     this.getString(R.string.scan_removable_storage_toast, ""),
                     Toast.LENGTH_SHORT).show();
             SDCardScannerService.scan(this);
+        }
+        if (requestCode == 1) {
+            boolean hasAllPermision = true; //判断是否拥有所有权限
+            for (int i = 0; i < grantResults.length; i++) {
+                if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {//用户拒绝授权的权限
+                    //判断是否勾选禁止后不再询问
+                    boolean showRequestPermission = ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[i]);
+                    if (!showRequestPermission) {
+//                        Toast.makeText(MainActivity.this, "禁止后不再询问", Toast.LENGTH_SHORT).show();
+                        hasAllPermision = false;
+                    }
+                    hasPermission = false;
+                }
+            }
+            if (!hasAllPermision) {//用户拒绝了一些权限，且是禁止后不再询问
+                hasPermission = false;
+                Toast.makeText(this, "缺少必要权限 你选择了禁止后不再询问，请主动授予 。", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

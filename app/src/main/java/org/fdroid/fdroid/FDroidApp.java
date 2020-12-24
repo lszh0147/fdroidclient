@@ -59,10 +59,10 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.process.BitmapProcessor;
 import info.guardianproject.netcipher.NetCipher;
 import info.guardianproject.netcipher.proxy.OrbotHelper;
-import org.acra.ACRA;
-import org.acra.ReportField;
-import org.acra.ReportingInteractionMode;
-import org.acra.annotation.ReportsCrashes;
+//import org.acra.ACRA;
+//import org.acra.ReportField;
+//import org.acra.ReportingInteractionMode;
+//import org.acra.annotation.ReportsCrashes;
 import org.apache.commons.net.util.SubnetUtils;
 import org.fdroid.fdroid.Preferences.ChangeListener;
 import org.fdroid.fdroid.Preferences.Theme;
@@ -87,26 +87,26 @@ import java.security.Security;
 import java.util.List;
 import java.util.UUID;
 
-@ReportsCrashes(mailTo = BuildConfig.ACRA_REPORT_EMAIL,
-        mode = ReportingInteractionMode.DIALOG,
-        reportDialogClass = org.fdroid.fdroid.acra.CrashReportActivity.class,
-        reportSenderFactoryClasses = org.fdroid.fdroid.acra.CrashReportSenderFactory.class,
-        customReportContent = {
-                ReportField.USER_COMMENT,
-                ReportField.PACKAGE_NAME,
-                ReportField.APP_VERSION_NAME,
-                ReportField.ANDROID_VERSION,
-                ReportField.PRODUCT,
-                ReportField.BRAND,
-                ReportField.PHONE_MODEL,
-                ReportField.DISPLAY,
-                ReportField.TOTAL_MEM_SIZE,
-                ReportField.AVAILABLE_MEM_SIZE,
-                ReportField.CUSTOM_DATA,
-                ReportField.STACK_TRACE_HASH,
-                ReportField.STACK_TRACE,
-        }
-)
+//@ReportsCrashes(mailTo = BuildConfig.ACRA_REPORT_EMAIL,
+//        mode = ReportingInteractionMode.DIALOG,
+//        reportDialogClass = org.fdroid.fdroid.acra.CrashReportActivity.class,
+//        reportSenderFactoryClasses = org.fdroid.fdroid.acra.CrashReportSenderFactory.class,
+//        customReportContent = {
+//                ReportField.USER_COMMENT,
+//                ReportField.PACKAGE_NAME,
+//                ReportField.APP_VERSION_NAME,
+//                ReportField.ANDROID_VERSION,
+//                ReportField.PRODUCT,
+//                ReportField.BRAND,
+//                ReportField.PHONE_MODEL,
+//                ReportField.DISPLAY,
+//                ReportField.TOTAL_MEM_SIZE,
+//                ReportField.AVAILABLE_MEM_SIZE,
+//                ReportField.CUSTOM_DATA,
+//                ReportField.STACK_TRACE_HASH,
+//                ReportField.STACK_TRACE,
+//        }
+//)
 public class FDroidApp extends Application {
 
     private static final String TAG = "FDroidApp";
@@ -381,12 +381,12 @@ public class FDroidApp extends Application {
         Languages.setLanguage(this);
         Preferences preferences = Preferences.get();
 
-        if (preferences.promptToSendCrashReports()) {
-            ACRA.init(this);
-            if (isAcraProcess() || HidingManager.isHidden(this)) {
-                return;
-            }
-        }
+//        if (preferences.promptToSendCrashReports()) {
+//            ACRA.init(this);
+//            if (isAcraProcess() || HidingManager.isHidden(this)) {
+//                return;
+//            }
+//        }
 
         PRNGFixes.apply();
 
@@ -630,7 +630,7 @@ public class FDroidApp extends Application {
             className = null;
         } catch (IOException e) {
             Exception toLog = new RuntimeException("Error preparing file to send via Bluetooth", e);
-            ACRA.getErrorReporter().handleException(toLog, false);
+//            ACRA.getErrorReporter().handleException(toLog, false);
         }
 
         if (sendBt != null) {

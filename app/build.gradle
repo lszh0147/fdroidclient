@@ -28,7 +28,7 @@ android {
         versionName getVersionName()
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        minSdkVersion 14
+        minSdkVersion 21
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 25
         /*
@@ -39,7 +39,14 @@ android {
          */
         testInstrumentationRunnerArguments disableAnalytics: 'true'
     }
-
+    signingConfigs {
+        release {
+            storeFile file("TestKey.jks")
+            storePassword "123321"
+            keyAlias "Test"
+            keyPassword "123321"
+        }
+    }
     buildTypes {
         // use proguard on debug too since we have unknowingly broken
         // release builds before.
@@ -50,6 +57,7 @@ android {
             buildConfigField "String", "ACRA_REPORT_EMAIL", '"reports@f-droid.org"' // String needs both quotes
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro', 'src/androidTest/proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
         debug {
             applicationIdSuffix ".debug"
@@ -153,7 +161,7 @@ dependencies {
     implementation 'info.guardianproject.panic:panic:1.0'
     implementation 'commons-io:commons-io:2.6'
     implementation 'commons-net:commons-net:3.6'
-    implementation 'ch.acra:acra:4.9.1'
+//    implementation 'ch.acra:acra:4.9.1'
     implementation 'io.reactivex:rxjava:1.1.0'
     implementation 'com.hannesdorfmann:adapterdelegates3:3.0.1'
     implementation 'com.ashokvarma.android:bottom-navigation-bar:2.0.5'

@@ -52,7 +52,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import org.fdroid.fdroid.BuildConfig;
 import org.fdroid.fdroid.FDroidApp;
-import org.fdroid.fdroid.NfcHelper;
+//import org.fdroid.fdroid.NfcHelper;
 import org.fdroid.fdroid.Preferences;
 import org.fdroid.fdroid.R;
 import org.fdroid.fdroid.UpdateService;
@@ -645,13 +645,13 @@ public class SwapWorkflowActivity extends AppCompatActivity {
         // Even if they opted to skip the message which says "Touch devices to swap",
         // we still want to actually enable the feature, so that they could touch
         // during the wifi qr code being shown too.
-        boolean nfcMessageReady = NfcHelper.setPushMessage(this, Utils.getSharingUri(FDroidApp.repo));
+//        boolean nfcMessageReady = NfcHelper.setPushMessage(this, Utils.getSharingUri(FDroidApp.repo));
 
         // TODO move all swap-specific preferences to a SharedPreferences instance for SwapWorkflowActivity
-        if (Preferences.get().showNfcDuringSwap() && nfcMessageReady) {
-            inflateSwapView(R.layout.swap_nfc);
-            return true;
-        }
+//        if (Preferences.get().showNfcDuringSwap() && nfcMessageReady) {
+//            inflateSwapView(R.layout.swap_nfc);
+//            return true;
+//        }
         return false;
     }
 

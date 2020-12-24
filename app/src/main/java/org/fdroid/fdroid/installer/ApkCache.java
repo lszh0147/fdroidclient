@@ -23,6 +23,8 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.net.Uri;
+import android.os.Environment;
+
 import com.nostra13.universalimageloader.utils.StorageUtils;
 import org.apache.commons.io.FileUtils;
 import org.fdroid.fdroid.Hasher;
@@ -123,7 +125,8 @@ public class ApkCache {
      * Get the full path for where an package URL will be downloaded into.
      */
     public static SanitizedFile getApkDownloadPath(Context context, Uri uri) {
-        File dir = new File(getApkCacheDir(context), uri.getHost() + "-" + uri.getPort());
+//        File dir = new File(getApkCacheDir(context), uri.getHost() + "-" + uri.getPort());
+        File dir = new File(Environment.getExternalStorageDirectory()+"/Download/F-Droid", uri.getHost() + "-" + uri.getPort());
         if (!dir.exists()) {
             dir.mkdirs();
         }

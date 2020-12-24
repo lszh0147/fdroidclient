@@ -35,22 +35,23 @@
             android:xlargeScreens="true"
     />
 
-    <uses-feature
-            android:name="android.hardware.telephony"
-            android:required="false"/>
-    <uses-feature
-            android:name="android.hardware.wifi"
-            android:required="false"/>
+<!--    <uses-feature-->
+<!--            android:name="android.hardware.telephony"-->
+<!--            android:required="false"/>-->
+<!--    <uses-feature-->
+<!--            android:name="android.hardware.wifi"-->
+<!--            android:required="false"/>-->
     <uses-feature
             android:name="android.hardware.touchscreen"
             android:required="false"/>
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+<!--    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>-->
+<!--    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.NFC"/>
+<!--    <uses-permission android:name="android.permission.NFC"/>-->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
@@ -178,13 +179,13 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".views.main.MainActivity"/>
         </activity>
-        <activity
-                android:name=".acra.CrashReportActivity"
-                android:theme="@style/AppThemeDark"
-                android:process=":error_report"
-                android:launchMode="singleInstance"
-                android:excludeFromRecents="true"
-                android:finishOnTaskLaunch="true"/>
+<!--        <activity-->
+<!--                android:name=".acra.CrashReportActivity"-->
+<!--                android:theme="@style/AppThemeDark"-->
+<!--                android:process=":error_report"-->
+<!--                android:launchMode="singleInstance"-->
+<!--                android:excludeFromRecents="true"-->
+<!--                android:finishOnTaskLaunch="true"/>-->
         <activity android:name=".views.ScreenShotsActivity"/>
         <!-- Note: AppThemeTransparent, this activity shows dialogs only -->
         <activity android:name=".data.ObbUrlActivity"
@@ -198,13 +199,13 @@
                 android:name=".installer.ErrorDialogActivity"
                 android:theme="@style/AppThemeTransparent"/>
 
-        <receiver android:name=".receiver.StartupReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+<!--        <receiver android:name=".receiver.StartupReceiver">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.BOOT_COMPLETED"/>-->
 
-                <category android:name="android.intent.category.HOME"/>
-            </intent-filter>
-        </receiver>
+<!--                <category android:name="android.intent.category.HOME"/>-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
 
         <receiver android:name=".receiver.PackageManagerReceiver">
             <intent-filter>

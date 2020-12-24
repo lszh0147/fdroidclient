@@ -26,28 +26,28 @@
           package="org.fdroid.fdroid"
           android:installLocation="auto">
 
-    <uses-feature android:name="android.hardware.nfc" android:required="false"/>
-    <uses-feature android:name="android.hardware.bluetooth" android:required="false"/>
-    <uses-feature android:name="android.hardware.usb.host" android:required="false"/>
+<!--    <uses-feature android:name="android.hardware.nfc" android:required="false"/>-->
+<!--    <uses-feature android:name="android.hardware.bluetooth" android:required="false"/>-->
+<!--    <uses-feature android:name="android.hardware.usb.host" android:required="false"/>-->
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+<!--    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>-->
+<!--    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>-->
+<!--    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>-->
+<!--    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>-->
+<!--    <uses-permission android:name="android.permission.BLUETOOTH"/>-->
+<!--    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>-->
+<!--    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <uses-permission android:name="android.permission.NFC"/>
-    <uses-permission android:name="android.permission.USB_PERMISSION"
+<!--    <uses-permission android:name="android.permission.NFC"/>-->
+<!--    <uses-permission android:name="android.permission.USB_PERMISSION"-->
                      android:maxSdkVersion="22"/> <!-- maybe unnecessary -->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
-    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+<!--    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION"/>-->
 
     <application>
 
@@ -64,11 +64,11 @@
                     android:value=".views.main.MainActivity"/>
         </activity>
 
-        <receiver android:name=".nearby.WifiStateChangeReceiver">
-            <intent-filter>
-                <action android:name="android.net.wifi.STATE_CHANGE"/>
-            </intent-filter>
-        </receiver>
+<!--        <receiver android:name=".nearby.WifiStateChangeReceiver">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.net.wifi.STATE_CHANGE"/>-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
 
         <receiver android:name=".receiver.DeviceStorageReceiver">
             <intent-filter>
@@ -76,14 +76,14 @@
             </intent-filter>
         </receiver>
 
-        <service
-                android:name=".nearby.WifiStateChangeService"
-                android:exported="false"/>
+<!--        <service-->
+<!--                android:name=".nearby.WifiStateChangeService"-->
+<!--                android:exported="false"/>-->
         <service android:name=".nearby.SwapService"/>
 
-        <service
-                android:name=".nearby.LocalRepoService"
-                android:exported="false"/>
+<!--        <service-->
+<!--                android:name=".nearby.LocalRepoService"-->
+<!--                android:exported="false"/>-->
         <service
                 android:name=".nearby.TreeUriScannerIntentService"
                 android:exported="false"/>
@@ -91,35 +91,35 @@
                 android:name=".nearby.SDCardScannerService"
                 android:exported="false"/>
 
-        <receiver
-                android:name=".nearby.UsbDeviceAttachedReceiver">
-            <intent-filter>
-                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>
-            </intent-filter>
-            <meta-data
-                    android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-                    android:resource="@xml/device_filter"/>
-        </receiver>
-        <receiver
-                android:name=".nearby.UsbDeviceDetachedReceiver">
-            <intent-filter>
-                <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED"/>
-            </intent-filter>
-            <meta-data
-                    android:name="android.hardware.usb.action.USB_DEVICE_DETACHED"
-                    android:resource="@xml/device_filter"/>
-        </receiver>
-        <receiver android:name=".nearby.UsbDeviceMediaMountedReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.MEDIA_EJECT" />
-                <action android:name="android.intent.action.MEDIA_REMOVED" />
-                <action android:name="android.intent.action.MEDIA_MOUNTED" />
-                <action android:name="android.intent.action.MEDIA_BAD_REMOVAL" />
+<!--        <receiver-->
+<!--                android:name=".nearby.UsbDeviceAttachedReceiver">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>-->
+<!--            </intent-filter>-->
+<!--            <meta-data-->
+<!--                    android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"-->
+<!--                    android:resource="@xml/device_filter"/>-->
+<!--        </receiver>-->
+<!--        <receiver-->
+<!--                android:name=".nearby.UsbDeviceDetachedReceiver">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED"/>-->
+<!--            </intent-filter>-->
+<!--            <meta-data-->
+<!--                    android:name="android.hardware.usb.action.USB_DEVICE_DETACHED"-->
+<!--                    android:resource="@xml/device_filter"/>-->
+<!--        </receiver>-->
+<!--        <receiver android:name=".nearby.UsbDeviceMediaMountedReceiver">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MEDIA_EJECT" />-->
+<!--                <action android:name="android.intent.action.MEDIA_REMOVED" />-->
+<!--                <action android:name="android.intent.action.MEDIA_MOUNTED" />-->
+<!--                <action android:name="android.intent.action.MEDIA_BAD_REMOVAL" />-->
 
-                <data android:scheme="content" />
-                <data android:scheme="file" />
-            </intent-filter>
-        </receiver>
+<!--                <data android:scheme="content" />-->
+<!--                <data android:scheme="file" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
 
         <activity
                 android:name=".panic.PanicPreferencesActivity"

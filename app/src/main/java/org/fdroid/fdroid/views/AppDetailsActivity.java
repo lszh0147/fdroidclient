@@ -55,7 +55,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import org.fdroid.fdroid.AppUpdateStatusManager;
 import org.fdroid.fdroid.FDroidApp;
-import org.fdroid.fdroid.NfcHelper;
+//import org.fdroid.fdroid.NfcHelper;
 import org.fdroid.fdroid.R;
 import org.fdroid.fdroid.Utils;
 import org.fdroid.fdroid.data.Apk;
@@ -689,12 +689,12 @@ public class AppDetailsActivity extends AppCompatActivity
 
     @Override
     public void enableAndroidBeam() {
-        NfcHelper.setAndroidBeam(this, app.packageName);
+//        NfcHelper.setAndroidBeam(this, app.packageName);
     }
 
     @Override
     public void disableAndroidBeam() {
-        NfcHelper.disableAndroidBeam(this);
+//        NfcHelper.disableAndroidBeam(this);
     }
 
     @TargetApi(18)
